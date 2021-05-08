@@ -20,6 +20,7 @@ import { MapComponent } from "./components/MapComponent";
 import { TimelineComponent } from "./components/TimelineComponent";
 import data from "./vadata.json";
 function App() {
+  const tableRef = React.createRef<any>();
   const [mapData] = useState<any>(data);
   const finalData = mapData.map((d: any) => ({
     id: d.id,
@@ -92,11 +93,7 @@ function App() {
     { show: false, title: "Source", field: "source" },
   ]);
   const handleColumnChange = (column: any) => {
-    // const index = columns.findIndex((d: any) => {
-    //   return d.title === column.title;
-    // });
     const newColumns = [...columns];
-    // newColumns[index] = column;
     setColumns(newColumns);
   };
   const showTab = (tabName: any) => {
@@ -116,11 +113,45 @@ function App() {
       w.document.getElementById("TimeLineComponent").style.display = "block";
     }
   };
+  const arrayToCSV = (data: any) => {
+    let csv = data.map((row: any) => Object.values(row));
+    csv.unshift(Object.keys(data[0]));
+    return csv.join("\n");
+  };
   const download = (csvOrJson: string) => {
-    console.log(csvOrJson);
+    console.log(tableRef);
+    const fields = tableRef.current.dataManager.columns.map((c: any) => {
+      return c.field;
+    });
+    const downloadData = tableRef.current.state.data.map((d: any) => {
+      const data = { ...d };
+      Object.entries(data).map((entry: any, key: any, value: any) => {
+        if (!fields.includes(entry[0])) {
+          delete data[entry[0]];
+        }
+      });
+      return data;
+    });
+    console.log(downloadData);
+    let filename = "data.json";
+    let str;
+    let element = document.createElement("a");
     if (csvOrJson === "CSV") {
+      filename = "export.csv";
+      str = arrayToCSV(downloadData);
     } else if (csvOrJson === "JSON") {
+      filename = "export.json";
+      str = JSON.stringify(downloadData);
     }
+    element.setAttribute(
+      "href",
+      "data:text/plain;charset=utf-8," + encodeURIComponent(str)
+    );
+    element.setAttribute("download", filename);
+    element.style.display = "none";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
   };
   return (
     <>
@@ -267,6 +298,7 @@ function App() {
                 <DatabaseComponent
                   columns={columns}
                   data={finalData}
+                  tableRef={tableRef}
                 ></DatabaseComponent>
               </Paper>
               {/* </TabPanel> */}

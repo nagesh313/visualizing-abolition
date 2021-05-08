@@ -9,6 +9,7 @@ export function DatabaseComponent(props: any) {
   return (
     <div className="database-component">
       <MaterialTable
+        tableRef={props.tableRef}
         columns={columns}
         data={props.data}
         options={{
