@@ -47,5 +47,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://nagesh313.github.io/visualizing-abolition/"
+  "homepage": "https://nagesh313.github.io/visualizing-abolition/",
+  "devDependencies": {
+    "@types/highcharts": "^7.0.0"
+  }
 }

@@ -1,6 +1,5 @@
 import {
   AppBar,
-  Box,
   Button,
   Card,
   CardContent,
@@ -10,52 +9,18 @@ import {
   Grid,
   Paper,
   Slider,
-  Tab,
-  Tabs,
   TextField,
+  Toolbar,
   Typography,
 } from "@material-ui/core";
-// import DownloadIcon from "@material-ui/icons/Download";
 import React, { useState } from "react";
 import "./App.css";
 import { DatabaseComponent } from "./components/DatabaseComponent";
 import { MapComponent } from "./components/MapComponent";
 import { TimelineComponent } from "./components/TimelineComponent";
 import data from "./vadata.json";
-
-function a11yProps(index: any) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
-function TabPanel(props: any) {
-  const { children, value, index, ...other } = props;
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box style={{ paddingTop: "15px" }}>
-          <Typography component={"span"} variant={"body2"}>
-            {children}
-          </Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
 function App() {
   const [mapData] = useState<any>(data);
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event: any, newValue: any) => {
-    setValue(newValue);
-  };
   const finalData = mapData.map((d: any) => ({
     id: d.id,
     letter: d.letter,
@@ -134,6 +99,29 @@ function App() {
     // newColumns[index] = column;
     setColumns(newColumns);
   };
+  const showTab = (tabName: any) => {
+    console.log(tabName);
+    const w: any = window;
+    if (tabName === "DatabaseComponent") {
+      w.document.getElementById("DatabaseComponent").style.display = "block";
+      w.document.getElementById("MapComponent").style.display = "none";
+      w.document.getElementById("TimeLineComponent").style.display = "none";
+    } else if (tabName === "MapComponent") {
+      w.document.getElementById("DatabaseComponent").style.display = "none";
+      w.document.getElementById("MapComponent").style.display = "block";
+      w.document.getElementById("TimeLineComponent").style.display = "none";
+    } else if (tabName === "TimeLineComponent") {
+      w.document.getElementById("DatabaseComponent").style.display = "none";
+      w.document.getElementById("MapComponent").style.display = "none";
+      w.document.getElementById("TimeLineComponent").style.display = "block";
+    }
+  };
+  const download = (csvOrJson: string) => {
+    console.log(csvOrJson);
+    if (csvOrJson === "CSV") {
+    } else if (csvOrJson === "JSON") {
+    }
+  };
   return (
     <>
       <Grid
@@ -152,19 +140,17 @@ function App() {
             </Typography>
             <TextField
               label="Start Date"
-              id="filled-size-small"
-              defaultValue="Small"
+              id="filled-size-small1"
               variant="filled"
               size="small"
               value={sliderValue[0]}
               onChange={(newValue) => {
                 handleDateChange(newValue.currentTarget.value, sliderValue[1]);
               }}
-            />{" "}
+            />
             <TextField
               label="End Date"
-              id="filled-size-small"
-              defaultValue="Small"
+              id="filled-size-small2"
               variant="filled"
               size="small"
               value={sliderValue[1]}
@@ -180,7 +166,7 @@ function App() {
               marks={marks}
               min={1816}
               max={1900}
-            />{" "}
+            />
             <Card>
               <CardContent>
                 <Typography gutterBottom>Number of Results:</Typography>
@@ -224,13 +210,19 @@ function App() {
             <br></br> <br></br>
             <Button
               variant="outlined"
+              onClick={() => {
+                download("CSV");
+              }}
               // startIcon={<DownloadIcon />}
             >
               Download CSV
-            </Button>{" "}
+            </Button>
             <br></br> <br></br>
             <Button
               variant="outlined"
+              onClick={() => {
+                download("JSON");
+              }}
               //  startIcon={<DownloadIcon />}
             >
               Download JSON
@@ -239,49 +231,72 @@ function App() {
         </Grid>
         <Grid item xs={10}>
           <AppBar position="static">
-            <Tabs
-              centered
-              value={value}
-              onChange={handleChange}
-              aria-label="simple tabs example"
-            >
-              <Tab label="Database" {...a11yProps(0)} />
-              <Tab label="Map" {...a11yProps(1)} />
-              <Tab label="TimeLine" {...a11yProps(2)} />
-            </Tabs>
-          </AppBar>{" "}
+            <Toolbar>
+              <Grid container style={{ textAlign: "center" }}>
+                <Grid item xs={4}>
+                  <Button
+                    color="inherit"
+                    onClick={() => showTab("DatabaseComponent")}
+                  >
+                    Database
+                  </Button>
+                </Grid>
+                <Grid item xs={4}>
+                  <Button
+                    color="inherit"
+                    onClick={() => showTab("MapComponent")}
+                  >
+                    Map
+                  </Button>
+                </Grid>
+                <Grid item xs={4}>
+                  <Button
+                    color="inherit"
+                    onClick={() => showTab("TimeLineComponent")}
+                  >
+                    TimeLine
+                  </Button>
+                </Grid>
+              </Grid>
+            </Toolbar>
+          </AppBar>
           <Grid item xs={12}>
-            <Grid item xs={12}>
-              <TabPanel value={value} index={0}>
-                <Paper elevation={5}>
-                  {value === 0 && (
-                    <DatabaseComponent
-                      columns={columns}
-                      data={finalData}
-                    ></DatabaseComponent>
-                  )}
-                </Paper>
-              </TabPanel>
+            <Grid item xs={12} id={"DatabaseComponent"}>
+              {/* <TabPanel value={value} index={0}> */}
+              <Paper elevation={5}>
+                <DatabaseComponent
+                  columns={columns}
+                  data={finalData}
+                ></DatabaseComponent>
+              </Paper>
+              {/* </TabPanel> */}
             </Grid>
-            <Grid item xs={12} spacing={4}>
-              <TabPanel value={value} index={1}>
-                <Paper elevation={5}>
-                  {value === 1 && <MapComponent data={result}></MapComponent>}
-                </Paper>
-              </TabPanel>
+            <Grid item xs={12} id={"MapComponent"} style={{ display: "none" }}>
+              {/* <TabPanel value={value} index={1}> */}
+              <Paper elevation={5}>
+                {/* {value === 1 &&  */}
+                <MapComponent data={result}></MapComponent>
+                {/* } */}
+              </Paper>
+              {/* </TabPanel> */}
             </Grid>
-            <Grid item xs={12} spacing={4}>
-              <TabPanel value={value} index={2}>
-                <Paper elevation={5}>
-                  {value === 2 && (
-                    <TimelineComponent data={timelineData}></TimelineComponent>
-                  )}
-                </Paper>
-              </TabPanel>
+            <Grid
+              item
+              xs={12}
+              id={"TimeLineComponent"}
+              style={{ display: "none" }}
+            >
+              {/* <TabPanel value={value} index={2}> */}
+              <Paper elevation={5}>
+                {/* {value === 2 && ( */}
+                <TimelineComponent data={timelineData}></TimelineComponent>
+                {/* )} */}
+              </Paper>
+              {/* </TabPanel> */}
             </Grid>
           </Grid>
         </Grid>
-      </Grid>{" "}
+      </Grid>
     </>
   );
 }

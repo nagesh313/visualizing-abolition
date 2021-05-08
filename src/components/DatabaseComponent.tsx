@@ -1,5 +1,5 @@
-import React from "react";
 import MaterialTable from "material-table";
+import React from "react";
 import { Details } from "./Details";
 export function DatabaseComponent(props: any) {
   let columns = props.columns;
@@ -14,10 +14,10 @@ export function DatabaseComponent(props: any) {
         options={{
           filtering: true,
         }}
-        detailPanel={(rowData: any) => {
+        detailPanel={(data: any) => {
           return (
             <div style={{ padding: "10px" }}>
-              <Details data={rowData}></Details>
+              <Details data={data}></Details>
             </div>
           );
         }}

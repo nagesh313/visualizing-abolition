@@ -1,3 +1,4 @@
+import { Grid } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
@@ -23,30 +24,49 @@ const useStyles = makeStyles({
 
 export const Details = (props: any) => {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
-
   return (
     <Card className={classes.root} variant="outlined">
-      <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
+      <Grid container>
+        <Grid item xs={4}>
+          <CardContent>
+            <Typography className={classes.pos} color="textSecondary">
+              ID : {props.data.id}
+            </Typography>{" "}
+            <Typography className={classes.pos} color="textSecondary">
+              Date Sent : {props.data.dateSent}
+            </Typography>{" "}
+            <Typography className={classes.pos} color="textSecondary">
+              Date Received : {props.data.dateReceived}
+            </Typography>
+          </CardContent>
+        </Grid>
+        <Grid item xs={4}>
+          <CardContent>
+            <Typography className={classes.pos} color="textSecondary">
+              Imputed Origin : {props.data.impor}
+            </Typography>{" "}
+            <Typography className={classes.pos} color="textSecondary">
+              Letter : {props.data.letter}
+            </Typography>{" "}
+            <Typography className={classes.pos} color="textSecondary">
+              Date Received : {props.data.summary}
+            </Typography>
+          </CardContent>
+        </Grid>
+        <Grid item xs={4}>
+          <CardContent>
+            <Typography className={classes.pos} color="textSecondary">
+              Origin : {props.data.origin}
+            </Typography>{" "}
+            <Typography className={classes.pos} color="textSecondary">
+              Sender : {props.data.sender}
+            </Typography>{" "}
+            <Typography className={classes.pos} color="textSecondary">
+              Receiver: {props.data.receiver}
+            </Typography>
+          </CardContent>
+        </Grid>
+      </Grid>
     </Card>
   );
 };
