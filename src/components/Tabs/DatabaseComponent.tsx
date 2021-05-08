@@ -1,10 +1,10 @@
 import MaterialTable from "material-table";
 import React from "react";
 import { connect } from "react-redux";
-import { setTimeLineData, setMapData, setTableData } from "../../redux/actions";
-import { initializeData } from "../../redux/reducers/abolitionData";
-
+import { setMapData, setTableData, setTimeLineData } from "../../redux/actions";
+import { initializeResetData } from "../../redux/reducers/abolitionData";
 import { Details } from "./Details";
+
 export function DatabaseComponent(props: any) {
   console.log("DatabaseComponent");
   const tableRef = props.tableRef;
@@ -13,7 +13,7 @@ export function DatabaseComponent(props: any) {
   const tableDataFiltered = (data: any) => {
     console.log(tableDataFiltered, data);
     if (data.length === 0) {
-      const resetData = initializeData();
+      const resetData = initializeResetData();
       props.setTimeLineData({ timelineData: resetData.timelineData });
       props.setTableData({ tableData: resetData.tableData });
       props.setMapData({ mapData: resetData.mapData });

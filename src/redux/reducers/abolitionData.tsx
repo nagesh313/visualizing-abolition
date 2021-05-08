@@ -5,8 +5,7 @@ import {
   SET_COLUMNS,
 } from "../actionTypes";
 import data from "../../vadata.json";
-
-export const initializeData = () => {
+export const initializeData = (data: any) => {
   const mData: any = data;
   const finalData = mData.map((d: any) => ({
     id: d.id,
@@ -68,7 +67,11 @@ export const initializeData = () => {
     columns,
   };
 };
-const initialState = initializeData();
+export const initializeResetData = () => {
+  return initializeData(data);
+};
+
+const initialState = initializeResetData();
 export const abolitionData = (state = initialState, action: any) => {
   switch (action.type) {
     case SET_MAP_DATA:

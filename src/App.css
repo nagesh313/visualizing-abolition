@@ -8,3 +8,9 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.database-component > div > .MuiToolbar-root {
+  display: none;
+}
+table > thead > tr > th {
+  font-weight: bold !important;
+}
