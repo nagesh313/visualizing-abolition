@@ -1,11 +1,11 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 
 export const TimelineComponent = (props: any) => {
-  const [hoverData, setHoverData] = useState(null);
-  console.log(hoverData);
-  const [chartOptions, setChartOptions] = useState({
+  console.log("TimelineComponent");
+  const chartOptions = {
     chart: {
       panning: {
         enabled: false,
@@ -85,19 +85,13 @@ export const TimelineComponent = (props: any) => {
         index: 0,
       },
     ],
-    series: [{ data: props.data, color: "#00744E" }],
-    plotOptions: {
-      series: {
-        point: {
-          events: {
-            mouseOver(e: any) {
-              setHoverData(e.target.category);
-            },
-          },
-        },
-      },
-    },
-  });
-  console.log(setChartOptions);
+    series: [{ data: props.timelineData, color: "#00744E" }],
+  };
   return <HighchartsReact highcharts={Highcharts} options={chartOptions} />;
 };
+const mapStateToProps: any = (state: any) => {
+  return { timelineData: state.abolitionData.timelineData };
+};
+export default connect(mapStateToProps, {
+  // setAdmin
+})(TimelineComponent);

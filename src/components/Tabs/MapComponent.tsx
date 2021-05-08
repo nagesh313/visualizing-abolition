@@ -4,6 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 import proj4 from "proj4";
 import React from "react";
+import { connect } from "react-redux";
 highchartsMap(Highcharts); // Initialize the map module
 
 if (typeof window !== "undefined") {
@@ -12,6 +13,7 @@ if (typeof window !== "undefined") {
 }
 
 export const MapComponent = (props: any) => {
+  console.log("MapComponent");
   let mapOptions = {
     chart: {
       borderWidth: 1,
@@ -49,7 +51,7 @@ export const MapComponent = (props: any) => {
       {
         type: "mapbubble",
         color: "#78b5a1",
-        data: props.data,
+        data: props.mapData,
         cursor: "pointer",
         maxSize: "20%",
         minSize: 8,
@@ -65,3 +67,9 @@ export const MapComponent = (props: any) => {
     />
   );
 };
+const mapStateToProps: any = (state: any) => {
+  return { mapData: state.abolitionData.mapData };
+};
+export default connect(mapStateToProps, {
+  // setAdmin
+})(MapComponent);
