@@ -1,0 +1,174 @@
+[
+  {
+    "code3": "ABW",
+    "z": 105,
+    "code": "AW",
+    "color": "red"
+  },
+  {
+    "code3": "AFG",
+    "z": 34656,
+    "code": "AF"
+  },
+  {
+    "code3": "AGO",
+    "z": 28813,
+    "code": "AO"
+  },
+  {
+    "code3": "ALB",
+    "z": 2876,
+    "code": "AL"
+  },
+  {
+    "code3": "AND",
+    "z": 77,
+    "code": "AD"
+  },
+  {
+    "code3": "ARE",
+    "z": 9270,
+    "code": "AE"
+  },
+  {
+    "code3": "ARG",
+    "z": 43847,
+    "code": "AR"
+  },
+  {
+    "code3": "ARM",
+    "z": 2925,
+    "code": "AM"
+  },
+  {
+    "code3": "ASM",
+    "z": 56,
+    "code": "AS"
+  },
+  {
+    "code3": "ATG",
+    "z": 101,
+    "code": "AG"
+  },
+  {
+    "code3": "AUS",
+    "z": 24211,
+    "code": "AU"
+  },
+  {
+    "code3": "AUT",
+    "z": 8731,
+    "code": "AT"
+  },
+  {
+    "code3": "AZE",
+    "z": 9758,
+    "code": "AZ"
+  },
+  {
+    "code3": "BDI",
+    "z": 10524,
+    "code": "BI"
+  },
+  {
+    "code3": "BEL",
+    "z": 11338,
+    "code": "BE"
+  },
+  {
+    "code3": "BEN",
+    "z": 10872,
+    "code": "BJ"
+  },
+  {
+    "code3": "BFA",
+    "z": 18646,
+    "code": "BF"
+  },
+  {
+    "code3": "BGD",
+    "z": 162952,
+    "code": "BD"
+  },
+  {
+    "code3": "BGR",
+    "z": 7128,
+    "code": "BG"
+  },
+  {
+    "code3": "BHR",
+    "z": 1425,
+    "code": "BH"
+  },
+  {
+    "code3": "BHS",
+    "z": 391,
+    "code": "BS"
+  },
+  {
+    "code3": "BIH",
+    "z": 3517,
+    "code": "BA"
+  },
+  {
+    "code3": "BLR",
+    "z": 9502,
+    "code": "BY"
+  },
+  {
+    "code3": "BLZ",
+    "z": 367,
+    "code": "BZ"
+  },
+  {
+    "code3": "BMU",
+    "z": 65,
+    "code": "BM"
+  },
+  {
+    "code3": "BOL",
+    "z": 10888,
+    "code": "BO"
+  },
+  {
+    "code3": "BRA",
+    "z": 207653,
+    "code": "BR",
+    "color": "pink"
+  },
+  {
+    "code3": "BRB",
+    "z": 28555,
+    "code": "BB",
+    "color": "blue"
+  },
+  {
+    "code3": "BRN",
+    "z": 423,
+    "code": "BN",
+    "color": "green"
+  },
+  {
+    "code3": "BTN",
+    "z": 798,
+    "code": "BT"
+  },
+  {
+    "code3": "BWA",
+    "z": 2250,
+    "code": "BW",
+    "color": "red"
+  },
+  {
+    "code3": "CAF",
+    "z": 4595,
+    "code": "CF",
+    "color": "red"
+  },
+  {
+    "code3": "CAN",
+    "z": 36265,
+    "code": "CA",
+    "color": "green"
+  }
+]
