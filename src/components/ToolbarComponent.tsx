@@ -42,7 +42,6 @@ export const ToolbarComponent = (props: any) => {
     return csv.join("\n");
   };
   const download = (csvOrJson: string) => {
-    console.log(props.tableRef);
     const fields = props.tableRef.current.dataManager.columns.map((c: any) => {
       return c.field;
     });

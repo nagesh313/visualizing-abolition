@@ -7,7 +7,7 @@ import { initializeData } from "../../redux/reducers/abolitionData";
 import { Details } from "./Details";
 export function DatabaseComponent(props: any) {
   console.log("DatabaseComponent");
-  const tableRef = React.createRef<any>();
+  const tableRef = props.tableRef;
 
   let columns = props.columns;
   const tableDataFiltered = (data: any) => {
@@ -73,7 +73,7 @@ export function DatabaseComponent(props: any) {
   return (
     <div className="database-component">
       <MaterialTable
-        tableRef={tableRef}
+        tableRef={props.tableRef}
         onFilterChange={(data: any) => {
           tableDataFiltered(data);
         }}

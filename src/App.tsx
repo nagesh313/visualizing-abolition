@@ -7,6 +7,7 @@ import ToolbarComponent from "./components/ToolbarComponent";
 import { setMapData, setTableData, setTimeLineData } from "./redux/actions";
 
 function App() {
+  const tableRef = React.createRef();
   return (
     <>
       <Grid
@@ -19,9 +20,9 @@ function App() {
         spacing={5}
       >
         <Grid item xs={2}>
-          <ToolbarComponent></ToolbarComponent>
+          <ToolbarComponent tableRef={tableRef}></ToolbarComponent>
         </Grid>
-        <TabsComponent></TabsComponent>
+        <TabsComponent tableRef={tableRef}></TabsComponent>
       </Grid>
     </>
   );

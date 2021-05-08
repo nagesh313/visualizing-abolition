@@ -55,7 +55,7 @@ export const TabsComponent = (props: any) => {
         <Grid item xs={12}>
           <Grid item xs={12} id={"DatabaseComponent"}>
             <Paper elevation={5}>
-              <DatabaseComponent></DatabaseComponent>
+              <DatabaseComponent tableRef={props.tableRef}></DatabaseComponent>
             </Paper>
           </Grid>
           <Grid item xs={12} id={"MapComponent"} style={{ display: "none" }}>
