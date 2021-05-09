@@ -19,7 +19,7 @@ function App() {
         }}
         spacing={5}
       >
-        <Grid item xs={2}>
+        <Grid item xs={2} style={{ minWidth: "160px" }}>
           <ToolbarComponent tableRef={tableRef}></ToolbarComponent>
         </Grid>
         <TabsComponent tableRef={tableRef}></TabsComponent>
